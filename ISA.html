@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISA/IEC 62443 | Industrial Security</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            isa: '#f97316', // Orange for ISA
+                            dark: '#0b1120',
+                            glass: 'rgba(30, 41, 59, 0.7)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b1120;
+            color: #e2e8f0;
+            background-image: 
+                linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .control-card:hover {
+            transform: translateY(-5px);
+            border-color: #f97316;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.15);
+        }
+        .nav-btn.active {
+            color: #f97316;
+            border-bottom: 2px solid #f97316;
+        }
+        .nav-btn {
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover {
+            color: white;
+        }
+        .example-box {
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 2px solid #f97316;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b1120; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 glass-panel border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="3358_Tridiagonal_AI Logo Design April25_Final W.png" alt="Tridiagonal AI" class="h-10">
+                </a>
+                <div class="flex gap-6 overflow-x-auto">
+                    <a href="ISO.html" class="nav-btn px-2 py-2 font-bold text-sm whitespace-nowrap">ISO 27001</a>
+                    <a href="NIST.html" class="nav-btn px-2 py-2 font-bold text-sm whitespace-nowrap">NIST 800-82</a>
+                    <a href="ISA.html" class="nav-btn active px-2 py-2 font-bold text-sm whitespace-nowrap">ISA/IEC 62443</a>
+                    <a href="Dev.html" class="nav-btn px-2 py-2 font-bold text-sm whitespace-nowrap">Dev Systems</a>
+                    <a href="code.html" class="nav-btn px-2 py-2 font-bold text-sm whitespace-nowrap">Code Sec</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 text-center px-4">
+        <div class="inline-block mb-4 px-3 py-1 border border-cyber-isa rounded-full text-cyber-isa text-xs font-mono uppercase bg-slate-900/50">
+            ICS & OT Security Standard
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+            ISA/IEC <span class="text-cyber-isa">62443</span>
+        </h1>
+        <p class="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed">
+            The global standard for securing Industrial Control Systems (ICS). 
+            Targeting <strong>SL2-SL3</strong> environments in Oil & Gas, Refineries, and Manufacturing.
+        </p>
+    </section>
+
+    <div class="sticky top-20 z-40 bg-[#0b1120]/90 border-y border-slate-800 py-4 backdrop-blur-md shadow-lg">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="relative">
+                <i class="fa-solid fa-search absolute left-4 top-3.5 text-slate-500"></i>
+                <input type="text" id="searchInput" 
+                    placeholder="Search (e.g., 'SL3', 'Zone', 'Patch', 'Remote Access')..." 
+                    class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl pl-12 pr-4 py-3 focus:border-cyber-isa focus:ring-1 focus:ring-cyber-isa focus:outline-none transition-all shadow-inner">
+            </div>
+        </div>
+    </div>
+
+    <div id="mainContent" class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        </div>
+
+    <footer class="border-t border-slate-800 py-8 mt-12 text-center text-slate-500 text-sm">
+        <p>&copy; 2025 Tridiagonal AI. Internal Security Documentation.</p>
+    </footer>
+
+    <script>
+        const isaData = [
+            // 1. Security Levels
+            {
+                id: "sl-levels",
+                title: "Security Levels (SL)",
+                subtitle: "Risk Grading (SL1-SL4)",
+                icon: "fa-layer-group",
+                highlight: false,
+                fullWidth: false,
+                desc: "Industrial environments define defense rigor based on potential threat sophistication.",
+                bullets: [
+                    "<strong>SL1 (Basic):</strong> Protection against casual/unintentional misuse. <br><em class='text-slate-500'>req: Basic passwords, access control.</em>",
+                    "<strong>SL2 (Intentional):</strong> Protection against simple tools/script kiddies. <br><em class='text-slate-500'>req: Firewalls, antivirus. (Typical O&G baseline).</em>",
+                    "<strong>SL3 (Sophisticated):</strong> Protection against professional hackers. <br><em class='text-slate-500'>req: Strong auth, resilient design.</em>",
+                    "<strong>SL4 (Nation-State):</strong> Protection against highly resourced attacks. <br><em class='text-slate-500'>req: Zero-trust, strict isolation.</em>"
+                ]
+            },
+            // 2. Zones & Conduits
+            {
+                id: "zones-conduits",
+                title: "Zones & Conduits",
+                subtitle: "Architecture & Segmentation",
+                icon: "fa-network-wired",
+                highlight: false,
+                fullWidth: false,
+                desc: "Segmentation is the primary defense. You cannot flatten the network.",
+                bullets: [
+                    "<strong>Zones:</strong> Grouping of assets with similar security requirements.",
+                    "<strong>Conduits:</strong> The <em>only</em> allowed pathways between zones (firewalled).",
+                    "<strong>Foundational Reqs:</strong> FR1-FR7 (Identity, Integrity, Confidentiality, etc.)"
+                ],
+                examples: "<strong>Zone Examples:</strong> Safety Systems (SIS), Turbine Controls.<br><strong>Conduit Examples:</strong> VPN tunnel for maintenance, Data Diode for Historian."
+            },
+            // 3. Service Provider Requirements (CRITICAL)
+            {
+                id: "vendor-2-4",
+                title: "Vendor Obligations",
+                subtitle: "ISA/IEC 62443-2-4",
+                icon: "fa-briefcase",
+                highlight: true,
+                fullWidth: false,
+                badge: "AI VENDOR MANDATORY",
+                desc: "As a software/AI provider, O&G clients hold us to strict 'Service Provider' standards.",
+                bullets: [
+                    "<strong>No Shared Accounts:</strong> Admin access must be attributable to a specific human.",
+                    "<strong>Incident Response:</strong> We must report security events (even minor logs) to the client immediately.",
+                    "<strong>Patch Validation:</strong> Never push an auto-update. Patches must be tested in staging first.",
+                    "<strong>Secure Remote Access:</strong> VPN + MFA + Time-limited sessions only."
+                ]
+            },
+            // 4. SDL (CRITICAL)
+            {
+                id: "dev-4-1",
+                title: "Secure Dev Lifecycle (SDL)",
+                subtitle: "ISA/IEC 62443-4-1",
+                icon: "fa-code-branch",
+                highlight: true,
+                fullWidth: false,
+                badge: "DEV TEAM",
+                desc: "We cannot deploy 'black box' AI. The code itself must be hardened before it reaches the plant.",
+                bullets: [
+                    "<strong>Threat Modeling:</strong> Identify abuse cases (e.g., model poisoning) <em>before</em> coding.",
+                    "<strong>Secure Coding:</strong> Follow OWASP/CERT guidelines (input validation, no hardcoded secrets).",
+                    "<strong>Vulnerability Testing:</strong> Fuzz testing protocols and scanning dependencies (SBOM).",
+                    "<strong>Code Review:</strong> Mandatory peer review for auth logic and API paths."
+                ]
+            },
+            // 5. Component Specs
+            {
+                id: "components-4-2",
+                title: "Component Requirements",
+                subtitle: "ISA/IEC 62443-4-2",
+                icon: "fa-microchip",
+                highlight: false,
+                fullWidth: false,
+                desc: "Technical specs for any software agent, edge gateway, or model server we deploy.",
+                bullets: [
+                    "<strong>Id & Auth:</strong> No default passwords. Support for centralized IAM.",
+                    "<strong>Use Control:</strong> RBAC (e.g., Operators view, Admins edit).",
+                    "<strong>System Integrity:</strong> Prevent unauthorized config changes.",
+                    "<strong>Restricted Data Flow:</strong> AI models cannot send raw data to public cloud."
+                ]
+            },
+            // 6. Client Reality
+            {
+                id: "client-expectations",
+                title: "The O&G Reality",
+                subtitle: "Deployment Constraints",
+                icon: "fa-industry",
+                highlight: false,
+                fullWidth: false,
+                desc: "Real-world constraints when deploying AI in a refinery:",
+                bullets: [
+                    "<strong>No Direct Internet:</strong> Solutions must work Offline, via DMZ, or Data Diode.",
+                    "<strong>Zero Disruption:</strong> Availability > Confidentiality. If the AI crashes, the Plant must stay up.",
+                    "<strong>Full Auditability:</strong> Every API call and model update must be logged for forensics.",
+                    "<strong>Role-Based Access:</strong> Integrate with the client's Active Directory."
+                ],
+                examples: "<strong>Failure Mode:</strong> If the AI server dies, the control valve must keep operating on last-known-good values."
+            },
+            // 7. The 14 Standards Family (UPDATED FULL WIDTH)
+            {
+                id: "structure",
+                title: "The 14 Standards Family",
+                subtitle: "Detailed Reference Tree",
+                icon: "fa-sitemap",
+                highlight: false,
+                fullWidth: true, // This triggers the 2-column span
+                desc: "The ISA/IEC 62443 series is not a single document—it's a family of 14 interconnected standards organized into four layers. ",
+                bullets: [
+                    // Visual Flow
+                    `<div class="flex flex-wrap gap-2 mb-4 text-[10px] font-mono uppercase text-center justify-center">
+                        <span class="bg-slate-700 px-2 py-1 rounded text-slate-300">Concepts</span>
+                        <span class="text-cyber-isa py-1">→</span>
+                        <span class="bg-slate-700 px-2 py-1 rounded text-slate-300">Policies</span>
+                        <span class="text-cyber-isa py-1">→</span>
+                        <span class="bg-slate-700 px-2 py-1 rounded text-slate-300">System Design</span>
+                        <span class="text-cyber-isa py-1">→</span>
+                        <span class="bg-slate-700 px-2 py-1 rounded text-slate-300">Components</span>
+                    </div>`,
+                    
+                    // CATEGORY 1
+                    `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-slate-700 pb-6 mb-4">
+                        <div class="col-span-full mb-2">
+                             <h4 class="text-lg font-bold text-cyber-isa">Category 1: General (62443-1-x)</h4>
+                             <p class="text-sm text-slate-400">Purpose: Common language, concepts, models, and foundational guidance. Ensures vendors, integrators, and asset owners speak the same language.</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-1-1: Terminology & Concepts</div>
+                            <p class="text-xs text-slate-400 mb-2">Defines basic OT security vocabulary (Zones, Conduits, SL1-SL4). Basically, it's the "dictionary + foundational theory".</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-1-2: Master Glossary</div>
+                            <p class="text-xs text-slate-400 mb-2">A comprehensive glossary aligning all terms used across the suite. Ensures legal/technical consistency.</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-1-3: Lifecycle & Metrics</div>
+                            <p class="text-xs text-slate-400 mb-2">Measurement frameworks for maturity and KPIs. (Sets future direction).</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-1-4: Certification</div>
+                            <p class="text-xs text-slate-400 mb-2">How certification schemes should be structured for products. Used when clients ask for "Compliant Products".</p>
+                        </div>
+                     </div>`,
+
+                     // CATEGORY 2
+                     `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-slate-700 pb-6 mb-4">
+                        <div class="col-span-full mb-2">
+                             <h4 class="text-lg font-bold text-cyber-isa">Category 2: Policies (62443-2-x)</h4>
+                             <p class="text-sm text-slate-400">Purpose: Governance, security programs, and service provider obligations.</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-2-1: Asset Owner Program</div>
+                            <p class="text-xs text-slate-400 mb-2">Foundational governance for operators (CSMS, Roles, Risk Assessments).</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-2-2: Implementation Guide</div>
+                            <p class="text-xs text-slate-400 mb-2">The "how-to manual" for building a CSMS and measuring maturity.</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-2-3: Patch Management</div>
+                            <p class="text-xs text-slate-400 mb-2">Plan, validate, and deploy patches without downtime. Risk eval for unpatched vulns.</p>
+                        </div>
+                        <div class="bg-cyber-isa/10 p-2 rounded border border-cyber-isa/30">
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-2-4: Service Providers</div>
+                            <p class="text-xs text-slate-300 mb-2"><strong>Critical for AI/IT Vendors.</strong> Requirements for remote access, incident response, and secure delivery.</p>
+                        </div>
+                     </div>`,
+
+                     // CATEGORY 3
+                     `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-slate-700 pb-6 mb-4">
+                        <div class="col-span-full mb-2">
+                             <h4 class="text-lg font-bold text-cyber-isa">Category 3: System (62443-3-x)</h4>
+                             <p class="text-sm text-slate-400">Purpose: System-level security design, architecture, and risk assessment.</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-3-1: Security Technologies</div>
+                            <p class="text-xs text-slate-400 mb-2">The technical toolbox: Firewalls, DMZ, Crypto, Anti-virus, and Network Segmentation.</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-3-2: Risk Assessment</div>
+                            <p class="text-xs text-slate-400 mb-2">Determines SL targets (SL1-SL4) per zone. Used in lifecycle workshops.</p>
+                        </div>
+                        <div class="col-span-full">
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-3-3: System Requirements</div>
+                            <p class="text-xs text-slate-400 mb-2">The "Blueprint". Breaks security into 7 Foundational Requirements (FR1-FR7) like Identity, Integrity, and Restricted Data Flow.</p>
+                        </div>
+                     </div>`,
+
+                     // CATEGORY 4
+                     `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="col-span-full mb-2">
+                             <h4 class="text-lg font-bold text-cyber-isa">Category 4: Component (62443-4-x)</h4>
+                             <p class="text-sm text-slate-400">Purpose: Secure product development (Dev) and component specs.</p>
+                        </div>
+                        <div class="bg-cyber-isa/10 p-2 rounded border border-cyber-isa/30">
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-4-1: Secure Dev Lifecycle (SDL)</div>
+                            <p class="text-xs text-slate-300 mb-2">Mandatory for AI Products. Threat modeling, secure coding, code review, SBOM, and fuzz testing.</p>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white font-mono mb-1">✔ 62443-4-2: Technical Component Reqs</div>
+                            <p class="text-xs text-slate-400 mb-2">Specs for Embedded/Host devices: No hardcoded creds, RBAC, secure updates, and auditability.</p>
+                        </div>
+                     </div>`
+                ],
+                examples: `
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-[10px] text-left">
+                            <thead>
+                                <tr class="text-cyber-isa border-b border-slate-600">
+                                    <th class="pb-2">Category</th>
+                                    <th class="pb-2">Standard</th>
+                                    <th class="pb-2">Focus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-300">
+                                <tr class="border-b border-slate-800"><td class="py-1">1-General</td><td>1-1 to 1-4</td><td>Concepts, Glossary, Metrics</td></tr>
+                                <tr class="border-b border-slate-800"><td class="py-1">2-Policies</td><td>2-1 to 2-4</td><td>CSMS, Patching, <span class="text-cyber-isa">Service Providers</span></td></tr>
+                                <tr class="border-b border-slate-800"><td class="py-1">3-System</td><td>3-1 to 3-3</td><td>Risk Assessment, Architecture</td></tr>
+                                <tr><td class="py-1">4-Component</td><td>4-1 to 4-2</td><td><span class="text-cyber-isa">SDL (Dev)</span>, Technical Specs</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `
+            }
+        ];
+
+        function render(filter = '') {
+            const container = document.getElementById('mainContent');
+            container.innerHTML = '';
+
+            isaData.forEach(item => {
+                const searchString = (item.title + item.desc + item.subtitle + item.bullets.join(' ') + (item.examples || '')).toLowerCase();
+                
+                if(searchString.includes(filter.toLowerCase())) {
+                    // Generate Bullet HTML
+                    const bulletHTML = item.bullets.map(b => 
+                        `<li class="flex items-start gap-2 mb-3 text-sm text-slate-300">
+                            <span class="text-cyber-isa mt-1 text-xs shrink-0"><i class="fa-solid fa-square-full"></i></span>
+                            <div class="w-full">${b}</div>
+                        </li>`
+                    ).join('');
+
+                    // Example Box HTML
+                    const exampleHTML = item.examples ? 
+                        `<div class="example-box">
+                            <div class="font-bold text-cyber-isa text-xs mb-2 uppercase flex justify-between items-center">
+                                <span>Summary Reference</span>
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            ${item.examples}
+                        </div>` : '';
+
+                    // Card Styling Logic
+                    const borderClass = item.highlight ? 'border-cyber-isa shadow-[0_0_25px_rgba(249,115,22,0.15)] bg-slate-900' : 'border-slate-700 hover:border-cyber-isa bg-slate-900/50';
+                    const iconColor = item.highlight ? 'text-cyber-isa' : 'text-slate-500';
+                    const badgeHTML = item.badge ? `<span class="absolute -top-3 right-4 bg-cyber-isa text-black text-[10px] font-bold px-2 py-1 rounded shadow-lg tracking-wider">${item.badge}</span>` : '';
+                    
+                    // CHECK FOR FULL WIDTH PROPERTY
+                    const colSpan = item.fullWidth ? 'lg:col-span-2' : '';
+
+                    container.innerHTML += `
+                        <div class="control-card glass-panel p-6 rounded-xl border-t-4 ${borderClass} relative group flex flex-col h-full ${colSpan}">
+                            ${badgeHTML}
+                            <div class="flex items-start gap-5 mb-4">
+                                <div class="text-3xl ${iconColor} group-hover:text-cyber-isa transition-colors mt-1">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white leading-tight">${item.title}</h3>
+                                    <p class="text-xs text-cyber-isa font-mono uppercase tracking-wider mt-1">${item.subtitle}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex-1">
+                                <p class="text-slate-400 text-sm mb-4 leading-relaxed">${item.desc}</p>
+                                <ul class="bg-black/20 rounded-lg p-4 mb-2">${bulletHTML}</ul>
+                                ${exampleHTML}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (container.innerHTML === '') {
+                container.innerHTML = `<div class="col-span-full text-center text-slate-500 py-12">No standards found matching "${filter}".</div>`;
+            }
+        }
+
+        render();
+        document.getElementById('searchInput').addEventListener('input', (e) => render(e.target.value));
+    </script>
+</body>
+</html>

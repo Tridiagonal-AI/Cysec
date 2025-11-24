@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Security | Security Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script> tailwind.config = { theme: { extend: { colors: { cyber: { git: '#8b5cf6' } }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] } } } } </script>
+    <style>
+        body { background-color: #0b1120; color: #e2e8f0; background-image: linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px); background-size: 30px 30px; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .control-card:hover { transform: translateY(-5px); border-color: #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.2); transition: all 0.3s ease; }
+        .nav-btn.active { color: #8b5cf6; border-bottom: 2px solid #8b5cf6; }
+        .nav-btn { color: #94a3b8; transition: all 0.3s; } .nav-btn:hover { color: white; }
+        table th { text-align: left; padding: 10px; color: #8b5cf6; } table td { border-top: 1px solid #334155; padding: 8px; font-size: 0.9rem; }
+    </style>
+</head>
+<body class="antialiased">
+    <nav class="fixed w-full z-50 glass-panel border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html"><img src="3358_Tridiagonal_AI Logo Design April25_Final W.png" class="h-12"></a>
+                <div class="flex gap-4 overflow-x-auto">
+                    <a href="ISO.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">ISO 27001</a>
+                    <a href="NIST.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">NIST</a>
+                    <a href="ISA.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">ISA 62443</a>
+                    <a href="Dev.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">Dev Systems</a>
+                    <a href="code.html" class="nav-btn active px-3 py-2 font-bold text-sm whitespace-nowrap">Code Sec</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 text-center">
+        <div class="inline-block mb-4 px-3 py-1 border border-cyber-git rounded-full text-cyber-git text-xs font-mono uppercase bg-slate-900/50">Software Supply Chain • GitOps</div>
+        <h1 class="text-5xl font-extrabold text-white mb-4">Code Security <span class="text-cyber-git block mt-2">GitHub & DevSecOps</span></h1>
+        <p class="text-slate-400 max-w-2xl mx-auto">Controls for source code protection, secure CI/CD pipelines, and access governance.</p>
+    </section>
+
+    <div id="mainContent" class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 gap-8">
+        
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-git">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="text-cyber-git text-4xl"><i class="fa-solid fa-code-branch"></i></div>
+                <div class="w-full">
+                    <h3 class="text-2xl font-bold text-white">Branch Protection & Workflow</h3>
+                    <p class="text-sm text-cyber-git font-mono mb-2">Repository Governance</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <ul class="list-disc pl-4 text-sm text-slate-400 space-y-2">
+                            <li><strong class="text-cyber-git">Pull Request Required:</strong> No direct commits to main.</li>
+                            <li><strong class="text-cyber-git">Linear History:</strong> No force-pushes or history rewriting.</li>
+                            <li><strong class="text-cyber-git">Approvals:</strong> Minimum 2 approvals (1 senior).</li>
+                            <li><strong class="text-cyber-git">Code Owners:</strong> Critical modules require owner sign-off.</li>
+                        </ul>
+                        <div class="bg-slate-800 p-3 rounded border border-slate-700">
+                            <strong class="text-white text-sm"><i class="fa-solid fa-signature mr-1"></i> Commit Integrity</strong>
+                            <p class="text-xs text-slate-400 mt-1">Enforce <strong>GPG Signed Commits</strong> to verify author identity. Block large binaries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-git">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="text-cyber-git text-4xl"><i class="fa-solid fa-rocket"></i></div>
+                <div class="w-full">
+                    <h3 class="text-2xl font-bold text-white">Secure CI/CD Pipeline</h3>
+                    <p class="text-sm text-cyber-git font-mono mb-2">Automated Verification</p>
+                    <div class="flex flex-wrap gap-2 mt-2 mb-4">
+                        <span class="bg-purple-900/50 border border-purple-500/30 px-2 py-1 rounded text-xs">SAST</span>
+                        <span class="bg-purple-900/50 border border-purple-500/30 px-2 py-1 rounded text-xs">SCA</span>
+                        <span class="bg-purple-900/50 border border-purple-500/30 px-2 py-1 rounded text-xs">Container Scan</span>
+                        <span class="bg-purple-900/50 border border-purple-500/30 px-2 py-1 rounded text-xs">IaC Scan</span>
+                    </div>
+                    <p class="text-sm text-slate-400">Supply Chain Security: All dependencies pinned with version locks. Dependabot alerts enabled.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-git">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="text-cyber-git text-4xl"><i class="fa-solid fa-user-lock"></i></div>
+                <div class="w-full">
+                    <h3 class="text-2xl font-bold text-white">Access Control & Secrets</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        <div><h5 class="text-cyber-git text-sm font-bold mb-1">Secrets</h5><ul class="text-xs text-slate-400 list-disc pl-4"><li>Secret Scanning: Auto-block commits.</li><li>No Storage: Use Vault/Actions Secrets.</li></ul></div>
+                        <div><h5 class="text-cyber-git text-sm font-bold mb-1">Auth</h5><ul class="text-xs text-slate-400 list-disc pl-4"><li>MFA/2FA: Mandatory.</li><li>SSO: Azure AD/Okta.</li><li>RBAC: Least privilege.</li></ul></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-git">
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="text-cyber-git text-4xl"><i class="fa-solid fa-id-badge"></i></div>
+                <div class="w-full">
+                    <h3 class="text-2xl font-bold text-white">Role Mapping Strategy</h3>
+                    <p class="text-sm text-cyber-git font-mono mb-4">Operational Governance Matrix</p>
+                    <div class="overflow-x-auto mt-4 rounded border border-slate-700">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th>User Role</th>
+                                    <th>GitHub Permission</th>
+                                    <th>Key Responsibilities</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-slate-800/50 text-slate-300">
+                                <tr><td class="font-bold text-white">Manager / Lead</td><td><span class="bg-red-900 text-red-300 px-2 py-0.5 rounded text-xs">Admin</span></td><td>Controls settings, merges, approvals</td></tr>
+                                <tr><td class="font-bold text-white">Developers</td><td><span class="bg-green-900 text-green-300 px-2 py-0.5 rounded text-xs">Write</span></td><td>Code, branches, PRs</td></tr>
+                                <tr><td class="font-bold text-white">Code Reviewers</td><td><span class="bg-green-900 text-green-300 px-2 py-0.5 rounded text-xs">Write</span> / <span class="bg-purple-900 text-purple-300 px-2 py-0.5 rounded text-xs">Triage</span></td><td>Review & approve PRs</td></tr>
+                                <tr><td class="font-bold text-white">Merge Maintainers</td><td><span class="bg-orange-900 text-orange-300 px-2 py-0.5 rounded text-xs">Maintain</span></td><td>Merge PRs, resolve conflicts</td></tr>
+                                <tr><td class="font-bold text-white">QA Team</td><td><span class="bg-green-900 text-green-300 px-2 py-0.5 rounded text-xs">Write</span> / <span class="bg-purple-900 text-purple-300 px-2 py-0.5 rounded text-xs">Triage</span></td><td>Test, validate, raise issues</td></tr>
+                                <tr><td class="font-bold text-white">Testing Team</td><td><span class="bg-blue-900 text-blue-300 px-2 py-0.5 rounded text-xs">Read</span></td><td>Test builds only</td></tr>
+                                <tr><td class="font-bold text-white">Cloud / DevOps</td><td><span class="bg-orange-900 text-orange-300 px-2 py-0.5 rounded text-xs">Maintain</span> / <span class="bg-blue-900 text-blue-300 px-2 py-0.5 rounded text-xs">Read</span></td><td>Deploy, manage pipelines</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
