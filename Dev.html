@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Systems | Security Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dev: '#0ea5e9',
+                            dark: '#0b1120',
+                            glass: 'rgba(30, 41, 59, 0.7)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b1120;
+            color: #e2e8f0;
+            background-image: linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .control-card:hover {
+            transform: translateY(-5px);
+            border-color: #0ea5e9;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+            transition: all 0.3s ease;
+        }
+        .nav-btn.active {
+            color: #0ea5e9;
+            border-bottom: 2px solid #0ea5e9;
+        }
+        .nav-btn {
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover {
+            color: white;
+        }
+        .tech-badge {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <nav class="fixed w-full z-50 glass-panel border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html"><img src="3358_Tridiagonal_AI Logo Design April25_Final W.png" class="h-12" alt="Logo"></a>
+                <div class="flex gap-4 overflow-x-auto">
+                    <a href="ISO.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">ISO 27001</a>
+                    <a href="NIST.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">NIST</a>
+                    <a href="ISA.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">ISA 62443</a>
+                    <a href="DEV.html" class="nav-btn active px-3 py-2 font-bold text-sm whitespace-nowrap">Dev Systems</a>
+                    <a href="code.html" class="nav-btn px-3 py-2 font-bold text-sm whitespace-nowrap">Code Sec</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 text-center">
+        <div class="inline-block mb-4 px-3 py-1 border border-cyber-dev rounded-full text-cyber-dev text-xs font-mono uppercase bg-slate-900/50">Endpoint & VM Hardening</div>
+        <h1 class="text-5xl font-extrabold text-white mb-4">Dev Systems <span class="text-cyber-dev block mt-2">Local & Virtual Security</span></h1>
+        <p class="text-slate-400 max-w-2xl mx-auto">Mandatory controls for developer workstations, virtual machines, and containerized environments.</p>
+    </section>
+
+    <div id="mainContent" class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 gap-8">
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+            <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <i class="fa-solid fa-sitemap text-cyber-dev"></i> 2.0 Architecture Overview
+            </h3>
+            <div class="rounded-lg overflow-hidden border border-slate-700">
+                <img src="2.0 arch.png" alt="Architecture Diagram" class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity">
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 py-4">
+            <div class="h-px bg-slate-700 flex-grow"></div>
+            <span class="text-cyber-dev font-mono font-bold text-lg">1. LOCAL SYSTEM (DEVELOPER MACHINES)</span>
+            <div class="h-px bg-slate-700 flex-grow"></div>
+        </div>
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-white">1.1 Device Security</h3>
+                    <p class="text-slate-400 text-sm">Mandatory controls for company-issued devices.</p>
+                </div>
+                <i class="fa-solid fa-laptop-code text-3xl text-slate-600"></i>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+                    <h4 class="text-cyber-dev font-bold mb-2">1.1.1 Full Disk Encryption (Mandatory)</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-brands fa-windows"></i> <span>BitLocker (TPM-backed)</span></li>
+                        <li class="flex items-center gap-2"><i class="fa-brands fa-apple"></i> <span>FileVault 2 (Secure Enclave)</span></li>
+                        <li class="text-xs text-slate-500 mt-2">Recovery keys stored in Azure AD / Jamf.</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+                    <h4 class="text-cyber-dev font-bold mb-2">1.1.2 Hardening & Updates</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><i class="fa-solid fa-shield-halved text-green-400 mr-2"></i>Secure Boot Enabled</li>
+                        <li><i class="fa-solid fa-ban text-red-400 mr-2"></i>USB/External Boot Disabled</li>
+                        <li><i class="fa-solid fa-rotate text-blue-400 mr-2"></i>Auto-updates via Intune/Jamf</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+            <h3 class="text-2xl font-bold text-white mb-4">1.2 Identity & Access Controls</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                <div class="md:col-span-1">
+                    <h4 class="text-white font-bold mb-2">Least Privilege (LPP)</h4>
+                    <p class="text-sm text-slate-400 mb-2">Developers do NOT get permanent local admin.</p>
+                    <div class="bg-yellow-900/20 border border-yellow-600/30 p-2 rounded text-xs text-yellow-200">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Admin via Just-In-Time (JIT) only (LAPS/PIM).
+                    </div>
+                </div>
+
+                <div class="md:col-span-2">
+                    <h4 class="text-white font-bold mb-2">MFA Everywhere</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <span class="tech-badge">Laptop: Hello/TouchID</span>
+                        <span class="tech-badge">GitHub: FIDO2</span>
+                        <span class="tech-badge">VPN: Duo/Azure MFA</span>
+                        <span class="tech-badge">AWS: FIDO2 Key</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Recommended Hardware: YubiKey 5 Series, Feitian FIDO2</p>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800/50 p-3 rounded border-l-4 border-cyber-dev">
+                <strong class="text-white">Conditional Access:</strong> Only approved, compliant devices (Intune/Okta Trust) may access GitHub, AWS, Internal VMs, and Jira.
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+                <h3 class="text-xl font-bold text-white mb-3">1.3 Endpoint Protection</h3>
+                
+                <div class="mb-4">
+                    <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">EDR/XDR (Mandatory)</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-slate-700 text-white text-xs px-2 py-1 rounded">CrowdStrike Falcon</span>
+                        <span class="bg-slate-700 text-white text-xs px-2 py-1 rounded">Defender ATP</span>
+                        <span class="bg-slate-700 text-white text-xs px-2 py-1 rounded">SentinelOne</span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2">USB Control</h4>
+                    <div class="flex items-center gap-2 text-sm text-slate-400">
+                        <i class="fa-solid fa-ban text-red-500"></i>
+                        <span>Mass storage disabled. Encrypted drives only.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+                <h3 class="text-xl font-bold text-white mb-3">1.4 Data Hygiene</h3>
+                
+                <div class="space-y-3">
+                    <div class="bg-red-900/20 border border-red-500/30 p-3 rounded">
+                        <strong class="text-red-400 block mb-1 text-sm"><i class="fa-solid fa-xmark mr-2"></i>PROHIBITED LOCALLY</strong>
+                        <p class="text-xs text-slate-300">Production logs, Prod DB dumps, OT telemetry, Customer PII, Raw API dumps.</p>
+                    </div>
+                    
+                    <div class="bg-green-900/20 border border-green-500/30 p-3 rounded">
+                        <strong class="text-green-400 block mb-1 text-sm"><i class="fa-solid fa-check mr-2"></i>ALLOWED</strong>
+                        <p class="text-xs text-slate-300">Masked synthetic datasets, 1Password/Keeper for secrets, VSCode Secret Storage.</p>
+                    </div>
+                    
+                    <div class="text-xs text-slate-500 mt-2">
+                        <strong class="text-slate-400">Browser Isolation:</strong> Use Chrome Enterprise policies to block malicious extensions.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 py-4 mt-8">
+            <div class="h-px bg-slate-700 flex-grow"></div>
+            <span class="text-cyber-dev font-mono font-bold text-lg">2. VIRTUAL SYSTEMS (VMs & CONTAINERS)</span>
+            <div class="h-px bg-slate-700 flex-grow"></div>
+        </div>
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+            <h3 class="text-2xl font-bold text-white mb-2">2.1 System Hardening</h3>
+            <p class="text-slate-400 text-sm mb-4">All base images MUST follow gold standards.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-mono text-cyber-dev text-sm mb-2">CIS Benchmarks (Lvl 1/2)</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge">Ubuntu CIS</span>
+                        <span class="tech-badge">Windows Server</span>
+                        <span class="tech-badge">RHEL/CentOS</span>
+                        <span class="tech-badge">Docker/K8s</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Tools: Lynis, OpenSCAP, AWS Inspector</p>
+                </div>
+                <div>
+                    <h4 class="font-mono text-cyber-dev text-sm mb-2">Image Strategy</h4>
+                    <ul class="text-sm text-slate-300 space-y-1">
+                        <li><i class="fa-solid fa-angle-right text-cyber-dev mr-1"></i> Minimal, Immutable Images</li>
+                        <li><i class="fa-solid fa-angle-right text-cyber-dev mr-1"></i> Built via Packer / Image Builder</li>
+                        <li><i class="fa-solid fa-angle-right text-cyber-dev mr-1"></i> Disable SSH/RDP/GUI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-3">2.2 Network Isolation</h3>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-network-wired text-cyber-dev mt-1"></i>
+                            <span><strong>Segmentation:</strong> Dev cannot talk to Prod. Staging cannot talk to OT.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-filter text-cyber-dev mt-1"></i>
+                            <span><strong>Zero Trust:</strong> Verify Identity, Device Posture, and Risk Score.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-3">2.3 Access Controls</h3>
+                    <div class="space-y-3">
+                        <div class="bg-slate-800 p-2 rounded text-sm">
+                            <strong class="text-white block">Bastion / Session Manager</strong>
+                            <span class="text-slate-400 text-xs">No direct VM access. Use AWS SSM (No inbound ports) or Azure Bastion.</span>
+                        </div>
+                        <div class="bg-slate-800 p-2 rounded text-sm">
+                            <strong class="text-white block">IAM & Logging</strong>
+                            <span class="text-slate-400 text-xs">No shared creds. Full audit logs (CloudTrail/Log Analytics) for shell sessions.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+                <h3 class="text-xl font-bold text-white mb-3">2.4 Ephemeral Infrastructure</h3>
+                <div class="mb-3">
+                    <strong class="text-cyber-dev text-sm font-mono">INFRASTRUCTURE AS CODE</strong>
+                    <div class="flex gap-2 mt-1">
+                        <span class="tech-badge">Terraform</span>
+                        <span class="tech-badge">Bicep</span>
+                        <span class="tech-badge">Ansible</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <strong class="text-cyber-dev text-sm font-mono">CONTAINERS</strong>
+                    <p class="text-sm text-slate-300">Minimal base images (distroless/alpine) with SBOM required (Syft, Trivy).</p>
+                </div>
+            </div>
+
+            <div class="control-card glass-panel p-6 rounded-xl border-t-4 border-cyber-dev">
+                <h3 class="text-xl font-bold text-white mb-3">2.5 Secure Testing</h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center justify-between border-b border-slate-700 pb-2">
+                        <span class="text-slate-300">DAST Tools</span>
+                        <span class="text-white font-mono text-xs">Burp Suite, OWASP ZAP</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-slate-700 pb-2">
+                        <span class="text-slate-300">Malware Sandbox</span>
+                        <span class="text-white font-mono text-xs">Isolated VM / Firecracker</span>
+                    </li>
+                    <li class="flex items-center justify-between border-b border-slate-700 pb-2">
+                        <span class="text-slate-300">Secret Mgmt</span>
+                        <span class="text-white font-mono text-xs">Vault, SSM, Key Vault</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <footer class="border-t border-slate-800 py-8 mt-12 text-center text-slate-500 text-sm">
+        <p>&copy; 2025 Tridiagonal AI. Internal Security Documentation.</p>
+    </footer>
+    </div>
+</body>
+</html>
